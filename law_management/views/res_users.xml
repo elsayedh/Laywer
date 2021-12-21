@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherited view of Resusers to add user type  -->
+    <record id ="res_user_view_form_law" model="ir.ui.view">
+        <field name="name">res.user.form.view1</field>
+        <field name="model">res.users</field>
+        <field name ="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type ="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="user_type"/>
+            </xpath>
+             <page name="access_rights" position="after">
+                  <page name="clients" string="Clients"
+                       attrs="{'invisible': [('user_type', '!=', 'lawyer')]}">
+                      <group>
+                          <field name="client_ids" nolabel="1"/>
+                      </group>
+                  </page> 
+             </page>
+        </field>
+    </record>
+</odoo>

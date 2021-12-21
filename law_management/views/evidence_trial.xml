@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Evidence of matter -->
+    <record id="matter_evidence_view_form" model="ir.ui.view" >
+        <field name="name">matter.evidence.form</field>
+        <field name="model">matter.evidence</field>
+        <field name="arch" type="xml">
+            <form string="Evidence">
+                <sheet>
+                    <h1>
+                        <field name="evi_seq" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group cols="4">
+                            <field name="name" required="1"/>
+                            <field name="evi_attachment_id"
+                                widget= "many2many_binary" required="1"/>
+                        </group>
+                        <group cols="4">
+                            <field name="evi_in_favor" required="1"/>
+                            <field name="matter_id" readonly="1"/>
+                        </group>
+                     </group>
+                     <separator string="Description"/>
+                        <field name="evi_description" required="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of evidence matter -->
+    <record id="matter_evidence_view_tree" model="ir.ui.view" >
+        <field name="name">matter.evidence.tree</field>
+        <field name="model">matter.evidence</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="evi_seq"/>
+                <field name="name"/>
+                <field name="matter_id"/>
+                <field name="evi_attachment_id"/>
+                <field name="evi_in_favor"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view of evidence matter -->
+    <record id="matter_evidence_view_search" model="ir.ui.view">
+        <field name="name">matter.evidence.search</field>
+        <field name="model">matter.evidence</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="evi_in_favor"/>
+                <filter name="fil_evi_in_fav" domain="[]"
+                    string="Evidence in Favor"
+                    context="{'group_by':'evi_in_favor'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Form view of Trial -->
+    <record id="matter_trial_view_form" model="ir.ui.view" >
+        <field name="name">wiz.matter.trial.form</field>
+        <field name="model">matter.trial</field>
+        <field name="arch" type="xml">
+            <form string="Trial">
+                <header>
+                    <!--<button name="trial_open" string="Validate" type="object"-->
+                        <!--class="oe_highlight" states="draft"-->
+                        <!--options="{'not_delete': True}" groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>-->
+                     <button name="trial_open" string="Validate" type="object"
+                        class="oe_highlight" states="draft"
+                       groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="trial_close" string="Done" type="object"
+                        class="oe_highlight" states="open" groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="create_invoice_trial" string="Create Invoice"
+                        type="object" class="oe_highlight"
+                        help="Trial Invoice" attrs="{'invisible':
+                        ['|',('pay_type','!=','pay_per_trial'),
+                        '|',('is_invoice','=', True),('state','!=', 'close')]}"
+                        groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <field name="state" widget="statusbar"/>
+                    </header>
+                <sheet>
+                    <h1>
+                        <field name="trial_seq" readonly="1"/>
+                    </h1>
+                    <group cols="4">
+                        <group>
+                            <field name="name" attrs="{'readonly':
+                                [('state','not in','draft')]}"
+                                required="1"/>
+                            <field name="date" required="1" attrs="{'readonly':
+                                [('state','not in','draft')]}"/>
+                            <field name="judge_name" attrs="{'invisible':
+                                [('state','not in','close')],'required':
+                                [('state','in','close')]}"/>
+                            <field name="tri_invoice_id" attrs="{'invisible':
+                                ['|', '|',('pay_type','!=','pay_per_trial'),
+                                    ('pay_type','!=','pay_per_fixed'),
+                                    ('state','not in','close')]}" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="court_name" attrs="{'required':
+                                [('state','in','draft')],'readonly':
+                                [('state','not in','draft')]}"
+                                options='{"no_create":True}'/>
+                            <field name="court_location" readonly="1"/>
+                            <field name="matter_id" readonly="1"/>
+                            <field name="is_invoice" readonly="1" invisible="1"/>
+                            <field name="pay_type" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" attrs="{'readonly':
+                            [('state','not in','draft')]}"/>
+                        <field name="trial_result" attrs="{'invisible':
+                            [('state','not in','close')]}"/>
+                    </group>
+                    <group attrs="{'invisible':[('state','not in','close')],
+                                   'required':[('state','in','close')]}">
+                       <label for="result" string="Result" />
+                        <div>
+                             <field name="result" class="oe_inline"/>
+                             <label for="result" string=" %" />
+                         </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Tree view of the trial -->
+    <record id="matter_trial_view_tree" model="ir.ui.view" >
+        <field name="name">wiz.matter.trial.tree</field>
+        <field name="model">matter.trial</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="trial_seq"/>
+                <field name="name"/>
+                <field name="matter_id"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Pivot View of Matter-->
+    <record id="matter_trial_view_pivot" model="ir.ui.view">
+        <field name="name">matter.pivot.view</field>
+        <field name="model">matter.trial</field>
+        <field name="arch" type="xml">
+            <pivot string="Matter Analysis">
+                <field name="name" type="row"/>
+                <field name="result" type="measure"/>
+                <field name="result" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View-->
+        <record id="matter_trial_view_graph" model="ir.ui.view">
+            <field name="name">matter.analysis.graph.view</field>
+            <field name="model">matter.trial</field>
+            <field name="arch" type="xml">
+                <graph string="matter Analysis">
+                    <field name="name" type="row"/>
+                    <field name="result" type="measure"/>
+                    <field name="result" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+</odoo>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_lawyer">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <style>
+                            tr,td,th{
+                                border-collapse: collapse;
+                            }
+                            h3{
+                                style:font-weight:bold;
+                            }
+                            .law_img{
+                                width:100px;
+                                height:100px;
+                                border-radius: 50%;
+                            }
+                        </style>
+                        <br/>
+                        <br/>
+                        <center>
+                        <table width="100%">
+                            <tr>
+								<td width="70%">
+                               	    <h3>
+									    <span t-esc="o.name"></span>
+                            	    </h3>
+                                </td>
+                                <td width="30%">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(o.image_1920)"
+                                        class="law_img"/>
+                                </td>
+                            </tr>
+                        </table>
+                        </center>
+                        <hr/>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <b>Working Address</b>
+                                    :<span t-field="o.address_id"/>
+                                </td>
+                                <td width="50%">
+								    <b>Department</b>
+                                    :<span t-field="o.department_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Work Mobile</b>
+                                    :<span t-field="o.mobile_phone"/>
+                                </td>
+                                <td> 
+                                    <b>Job Title</b>
+                                    :<span t-field="o.job_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>  
+                                    <b>Work Location</b>
+                                    :<span t-field="o.work_location"/>
+                                </td>
+                                <td> 
+                                    <b>Working Time </b>
+                                     :<span t-field="o.resource_calendar_id"/>
+                                </td>
+                            </tr>
+							<tr>
+							    <td> 
+							        <b> Work Email</b>
+							        :<span t-field="o.work_email"/>
+							    </td>
+							    <td> 
+							        <b>Employment Date</b>
+							        :<span t-field="o.employment_date"/>
+							     </td>
+							</tr>
+							<tr>
+							    <td> 
+							        <b>Work Phone </b>
+							        :<span t-field="o.work_phone"/>
+							    </td>
+							    <td> 
+							       <b>Maximum TrailS in One Matter</b>
+							       :<t t-esc="maximum_trails_one_matter(o)"/>
+							    </td>
+							</tr>
+                        </table>
+                        <h3>Fees</h3>
+                        <table width="100%">
+                          <tr>
+                               <td width="33.3%">
+                               <b>Fees per Hour</b>
+                                   :<span t-field="o.fees_hour"/>
+                               </td>
+                               <td width="33.3%">
+                                   <b>Fees per Trial</b>
+                                   :<span t-field="o.fees_trial"/>
+                               </td>
+                               <td width="33.3%">
+                                   <b>Fees Fixed</b>
+                                   :<span t-field="o.fees_fixed"/>
+                               </td>
+                          </tr>
+                          </table>
+                        <h3>Skills</h3>
+                         <table width="100%" class="table">
+                          <tr>
+                               <th width="30%">Language</th>
+                               <th width="70%">Argumentative Approach in % </th>
+                          </tr>
+                           <t t-foreach="o.skills_ids" t-as="skill_id">
+                            <tr>
+                               <td>
+                                   <span t-field="skill_id.language_id"/>
+                               </td>
+                               <td>
+                                   <span t-field="skill_id.arg_approach"/>
+                               </td>
+                           </tr>
+                           </t>
+                          </table>
+                        <h3>Educations</h3>
+                        <table width="100%" class="table">
+                          <tr>
+                               <th >Degree</th>
+                               <th >Certificate</th>
+                               <th >Year</th>
+                               <th >Institute</th>
+                               <th >University</th>
+                               <th >Percentage</th>
+                          </tr>
+                           <t t-foreach="o.degree_ids" t-as="deg_id">
+                            <tr>
+                               <td>
+                                   <span t-field="deg_id.degree_id"/>
+                               </td>
+                               <td>
+                                   <span t-field="deg_id.certy_id"/>
+                               </td>
+                               <td>
+                                   <span t-field="deg_id.passing_year"/>
+                               </td>
+                               <td>
+                                   <span t-field="deg_id.institute_id"/>
+                               </td>
+                               <td>
+                                   <span t-field="deg_id.uni_id"/>
+                               </td>
+                               <td>
+                                   <span t-field="deg_id.perc"/>
+                               </td>
+                           </tr>
+                           </t>
+                          </table>
+                        <p style="page-break-after: always;"></p>
+                        <br/>
+                        <table width="100%" class="table">
+                            <tr>
+                                <td>
+                                    <b>Matter Details</b>
+                                    <br/>
+                                    <t t-set="bar_chart" t-value="make_bar_chart(o)"/>
+                                    <t t-if="bar_chart">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(bar_chart)"
+				                            width="45%" 
+				                            height="200px;"/>
+                                    </t>
+                                    <t t-set="matter_pie_chart" t-value="make_matter_pie_chart(o)"/>
+                                    <t t-if="matter_pie_chart">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(matter_pie_chart)"
+				                            width="45%" 
+				                            height="200px;"/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-set="year_bar_chart" t-value="make_matter_year_bar_chart(o)"/>
+                                     <t t-if="year_bar_chart">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(year_bar_chart)"
+				                            width="50%" 
+				                            height="200px;"/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <b>Practise Area</b> 
+                                    <br/>
+                                    <t t-set="pie_char" t-value="make_pie_chart(o)"/>
+                                     <t t-if="pie_char">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(pie_char)"
+				                            width="50%" 
+				                            height="200px;"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-esc="remove_img(o.id)"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

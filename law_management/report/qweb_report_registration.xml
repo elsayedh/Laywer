@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="report_lawyer_registration" model="ir.actions.report">
+          <field name="name">Lawyer</field>
+          <field name="model">hr.employee</field>
+          <field name="report_type">qweb-pdf</field>
+          <field name="report_name">law_management.report_lawyer</field>
+          <field name="report_file">law_management.report_lawyer</field>
+          <field name="binding_model_id" ref="hr.model_hr_employee"/>
+          <field name="binding_type">report</field>
+      </record>
+      <record id="report_matter_registration" model="ir.actions.report">
+          <field name="name">Matter</field>
+          <field name="model">matter.matter</field>
+          <field name="report_type">qweb-pdf</field>
+          <field name="report_name">law_management.report_matter</field>
+          <field name="report_file">law_management.report_matter</field>
+          <field name="binding_model_id" ref="law_management.model_matter_matter"/>
+          <field name="binding_type">report</field>
+      </record>
+
+      <!--  Paper Format 
+        <record id="report_paperformat_qweb" model="report.paperformat">
+           <field name="name">Lawyer</field>
+           <field name="default" eval="True" />
+           <field name="format">A4</field>
+           <field name="page_height">0</field>
+           <field name="page_width">0</field>
+           <field name="orientation">Portrait</field>
+           <field name="margin_top">50</field> 
+           <field name="margin_bottom">15</field>
+           <field name="margin_left">10</field>
+           <field name="margin_right">10</field>
+           <field name="header_line" eval="False" />
+           <field name="header_spacing">45</field>
+           <field name="dpi">90</field>
+           <field name="report_ids" eval="[
+                                           (4, ref('law_management.report_lawyer_registration')),
+                                           (4, ref('law_management.report_matter_registration'))
+                                           ]"/>
+        </record> -->
+</odoo>

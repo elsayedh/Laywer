@@ -1,0 +1,527 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="act_act_0" model="act.act">
+            <field eval="str(1977)" name="act_year"/>
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="act_type">criminal</field>
+            <field name="create_date">2017-10-05 09:41:54</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="act_desc">&lt;p&gt;ABOLITION OF CIVIL IMPRISONMENT ACT 2 OF 1977
+
+(English text signed by the State President)
+ACT
+To abolish civil imprisonment; to repeal the law 'To amend the Law as to
+Imprisonment for Debt', 1881 (Transvaal), and the Civil Imprisonment
+Restriction Act, 1942; and to provide for incidental matters. &lt;br&gt;&lt;/p&gt;</field>
+            <field name="write_date">2017-10-05 09:41:54</field>
+            <field name="act_link">http://www.justice.gov.za/legislation/acts/acts_full.html</field>
+            <field name="act_no">2</field>
+            <field name="act_name">Abolition of Civil Imprisonment Act, 1977 (Act 2 of 1977)</field>
+        </record>
+
+        <record id="act_act_1" model="act.act">
+            <field eval="str(1997)" name="act_year"/>
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="act_type">criminal</field>
+            <field name="create_date">2017-10-05 09:44:09</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="act_desc">&lt;p&gt;&lt;strong style=&quot;margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14.4px; line-height: inherit; font-family: Verdana, Geneva, sans-serif; vertical-align: baseline; color: rgb(81, 81, 81); letter-spacing: -0.144px;&quot;&gt;&lt;strong style=&quot;margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14.4px; line-height: inherit; vertical-align: baseline; letter-spacing: -0.144px;&quot;&gt;Abolition of Corporal Punishment Act, 1997 &lt;/strong&gt;&lt;span style=&quot;color: rgb(51, 51, 51); font-size: 14.4px; font-weight: normal; letter-spacing: -0.144px;&quot;&gt;(Act 33 of 1997)&lt;/span&gt;&lt;br&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;</field>
+            <field name="write_date">2017-10-05 09:44:09</field>
+            <field name="act_link">http://www.justice.gov.za/legislation/acts/acts_full.html</field>
+            <field name="act_no">33</field>
+            <field name="act_name">Abolition of Corporal Punishment Act, 1997 (Act 33 of 1997)</field>
+        </record>
+
+        <record id="article_article_0" model="article.article">
+            <field name="art_notes">&lt;div align=&quot;left&quot; style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; color: rgb(51, 51, 51);&quot;&gt;  &lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;This chapter may be cited as the Physical Therapy Practice Act.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 0.9em; margin-bottom: 2em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;i style=&quot;font-size: 1em; font-family: inherit;&quot;&gt;(Repealed and added by Stats. 1968, Ch. 1284.)&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 1.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;/p&gt;&lt;/div&gt;&lt;div align=&quot;left&quot; style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; color: rgb(51, 51, 51);&quot;&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 1.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;/p&gt;&lt;h6 style=&quot;border-width: 0px; padding: 0px 0px 0.1em; font-size: 1em; margin: 0px; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; clear: both; color: rgb(0, 0, 0); font-weight: bolder; float: left;&quot;&gt;&lt;a style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin: 0px; vertical-align: baseline; font-family: inherit; color: rgb(35, 118, 200);&quot;&gt;2601.&lt;/a&gt;&lt;/h6&gt;  &lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;For the purpose of this chapter, the following terms shall have the following meanings, unless otherwise specified:&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;(a) “Board” means the Physical Therapy Board of California.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;(b) “Physical therapist” means a person who is licensed pursuant to this chapter to practice physical therapy.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;(c) “Physical therapist assistant” means a person who is licensed pursuant to this chapter to assist in the provision of physical therapy under the supervision of a licensed physical therapist. “Physical therapy assistant” and “physical therapist assistant” shall be deemed identical and interchangeable terms.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;(d) “Physical therapist technician” and “physical therapy aide,” as described in Section 2630.4, shall be deemed identical and interchangeable terms.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;(e) “Physiotherapy” shall be synonymous with “physical therapy.”&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 0.9em; margin-bottom: 2em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;i style=&quot;font-size: 1em; font-family: inherit;&quot;&gt;(Repealed and added by Stats. 2013, Ch. 389, Sec. 4. Effective January 1, 2014.)&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 1.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;/p&gt;&lt;/div&gt;&lt;div align=&quot;left&quot; style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; color: rgb(51, 51, 51);&quot;&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 1.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;/p&gt;&lt;h6 style=&quot;border-width: 0px; padding: 0px 0px 0.1em; font-size: 1em; margin: 0px; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; clear: both; color: rgb(0, 0, 0); font-weight: bolder; float: left;&quot;&gt;&lt;a style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin: 0px; vertical-align: baseline; font-family: inherit; color: rgb(35, 118, 200);&quot;&gt;2602.&lt;/a&gt;&lt;/h6&gt;  &lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;The Physical Therapy Board of California, hereafter referred to as the board, shall enforce and administer this chapter.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;This section shall remain in effect only until January 1, 2018, and as of that date is repealed, unless a later enacted statute, that is enacted before January 1, 2018, deletes or extends that date.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0px; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; display: inline;&quot;&gt;Notwithstanding any other provision of law, the repeal of this section renders the board subject to review by the appropriate policy committees of the Legislature.&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 14.688px; margin-bottom: 0.5em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif; clear: both;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-width: 0px; padding: 0px; font-size: 0.9em; margin-bottom: 2em; vertical-align: baseline; font-family: Verdana, Helvetica, sans-serif;&quot;&gt;&lt;i style=&quot;font-size: 1em; font-family: inherit;&quot;&gt;(Amended by Stats. 2013, Ch. 389, Sec. 5. Effective January 1, 2014. Repealed as of January 1, 2018, by its own provisions.) ---&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;</field>
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 11:27:29</field>
+            <field name="article_no">1</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 11:27:40</field>
+            <field name="art_name">ARTICLE 1. Administration and General Provisions [2600 - 2615] </field>
+            <field name="art_link">http://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&amp;division=2.&amp;title=&amp;part=&amp;chapter=5.7.&amp;article=1.</field>
+            <field name="art_category">criminal</field>
+        </record>
+
+        <record id="court_court_highcourtofsouthafrica0" model="court.court">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 10:05:34</field>
+            <field name="name">High Court of South Africa</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="location">South Africa</field>
+            <field name="write_date">2017-10-05 10:05:34</field>
+        </record>
+
+        <record id="court_court_santabarbaracountysuperiorcourt0" model="court.court">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 11:03:08</field>
+            <field name="name">Santa Barbara County Superior Court</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="location">America</field>
+            <field name="write_date">2017-10-05 11:03:08</field>
+        </record>
+
+        <record id="court_court_supremecourtoftheunitedkingdom0" model="court.court">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-06 06:25:48</field>
+            <field name="name">Supreme Court of the United Kingdom</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="location">London</field>
+            <field name="write_date">2017-10-06 06:25:48</field>
+        </record>
+
+        <record id="emp_degree_bacheloroflawsllb0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">D001</field>
+            <field name="create_date">2017-10-05 07:50:27</field>
+            <field name="name">Bachelor of Laws (LL.B.) </field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:50:27</field>
+            <field name="type">degree</field>
+        </record>
+
+        <record id="emp_degree_masteroflawsllm0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">D002</field>
+            <field name="create_date">2017-10-05 07:51:56</field>
+            <field name="name">Master of Laws (LL.M.)</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:51:56</field>
+            <field name="type">degree</field>
+        </record>
+
+        <record id="emp_degree_masterofbusinesslaw0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">003</field>
+            <field name="create_date">2017-10-05 07:52:09</field>
+            <field name="name">Master of Business Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:52:09</field>
+            <field name="type">degree</field>
+        </record>
+
+        <record id="emp_degree_doctorofphilosophyphd0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">004</field>
+            <field name="create_date">2017-10-05 07:52:18</field>
+            <field name="name">Doctor of Philosophy (Ph.D.)</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:52:18</field>
+            <field name="type">degree</field>
+        </record>
+
+        <record id="emp_degree_integratedmblllmmballm0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">005</field>
+            <field name="create_date">2017-10-05 07:52:32</field>
+            <field name="name">Integrated MBL-LLM/ MBA-LLM.</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:52:32</field>
+            <field name="type">degree</field>
+        </record>
+
+        <record id="emp_degree_degeecertificate0" model="emp.degree">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">1111</field>
+            <field name="create_date">2017-10-07 12:52:31</field>
+            <field name="name">Degee Certificate</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-07 12:52:31</field>
+            <field name="type">certificate</field>
+        </record>
+
+        <record id="emp_institute_universityofsouthafrica0" model="emp.institute">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">I001</field>
+            <field name="create_date">2017-10-05 07:53:08</field>
+            <field name="name">University of South Africa</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:53:08</field>
+        </record>
+
+        <record id="emp_university_universityofsouthafrica0" model="emp.university">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">U001</field>
+            <field name="create_date">2017-10-05 07:48:56</field>
+            <field name="name">University of South Africa</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:48:56</field>
+        </record>
+
+        <record id="matter_category_murder0" model="matter.category">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">C001</field>
+            <field name="create_date">2017-10-05 07:57:14</field>
+            <field name="name">Murder</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 07:57:14</field>
+            <field name="type">criminal</field>
+        </record>
+
+        <record id="matter_category_childabuse0" model="matter.category">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">C001</field>
+            <field name="create_date">2017-10-05 11:08:17</field>
+            <field name="name">Child Abuse</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 11:08:24</field>
+            <field name="type">civil</field>
+        </record>
+
+        <record id="matter_category_sucied0" model="matter.category">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">C003</field>
+            <field name="create_date">2017-10-07 12:12:49</field>
+            <field name="name">Suicide</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-07 12:12:49</field>
+            <field name="type">criminal</field>
+        </record>
+
+        <record id="matter_category_advice0" model="matter.category">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">C005</field>
+            <field name="create_date">2017-10-07 12:53:10</field>
+            <field name="name">Advice</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-07 12:53:10</field>
+            <field name="type">civil</field>
+        </record>
+
+        <record id="matter_category_moneylaundering0" model="matter.category">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">c0036</field>
+            <field name="create_date">2017-10-06 06:15:09</field>
+            <field name="name">Money Laundering</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-06 06:15:09</field>
+            <field name="type">civil</field>
+        </record>
+
+        <record id="matter_judge_thokozilemasipa0" model="matter.judge">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 10:06:23</field>
+            <field name="name">Thokozile Masipa</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="phone">8965231475</field>
+            <field name="write_date">2017-10-05 10:06:23</field>
+        </record>
+
+        <record id="matter_judge_lanceallanito0" model="matter.judge">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 11:50:14</field>
+            <field name="name">Lance Allan Ito </field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="phone">8965231462</field>
+            <field name="write_date">2017-10-05 11:50:14</field>
+        </record>
+
+    <!-- Client Services Data -->
+
+        <record id="client_service_consultationforlegalinformationandadvice0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S001</field>
+            <field name="create_date">2017-10-05 06:57:13</field>
+            <field name="name">Consultation for legal information and advice</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 06:57:13</field>
+        </record>
+
+        <record id="client_service_consultationtoreviewdocumentssuchasagreementsleaseswillscorporationdocumentsdoityourselfcourtforms0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S002</field>
+            <field name="create_date">2017-10-05 10:43:37</field>
+            <field name="name">Consultation to review documents (such as agreements, leases, wills, corporation documents, do-it-yourself court forms)</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 10:43:37</field>
+        </record>
+
+        <record id="client_service_mediationarbitrationorotherthirdpartyservices0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S003</field>
+            <field name="create_date">2017-10-05 10:44:35</field>
+            <field name="name">Mediation, arbitration, or other third party services</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 10:44:35</field>
+        </record>
+
+        <record id="client_service_preparationofdocuments0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S004</field>
+            <field name="create_date">2017-10-05 10:44:57</field>
+            <field name="name">Preparation of documents</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 10:44:57</field>
+        </record>
+
+        <record id="client_service_representingclientsinnegotiationspossiblyundercollaborativelawyeringagreementwherebothattorneyswithdrawifeithersidechoosestolitigate0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S005</field>
+            <field name="create_date">2017-10-05 10:45:38</field>
+            <field name="name">Representing clients in negotiations (possibly under “collaborative lawyering” agreement where both attorneys withdraw if either side chooses to litigate)</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 10:45:38</field>
+        </record>
+
+        <record id="client_service_representingclientsincourtarbitrationadministrativeandlegislativehearings0" model="client.service">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">S006</field>
+            <field name="create_date">2017-10-05 10:45:59</field>
+            <field name="name">Representing clients in court, arbitration, administrative and legislative hearings</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="write_date">2017-10-05 10:45:59</field>
+        </record>
+
+    <!-- Client Request Data -->
+
+        <record id="client_request_barrysteenkamp0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 07:06:28</field>
+            <field name="name">Barry Steenkamp</field>
+            <field name="contact_no">9951488552</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">hello,
+My daughter she is killed by his boyfriend. I want Lawyer to fight this case.
+Thanks.</field>
+            <field name="state">draft</field>
+            <field name="mat_type">criminal</field>
+            <field name="write_date">2017-10-05 07:19:41</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Consultation for legal information and advice')]"/>
+            <field name="email">Barry@mail.com</field>
+        </record>
+
+        <record id="client_request_michaeljackson0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-05 10:44:03</field>
+            <field name="name">Michael Jackson</field>
+            <field name="contact_no">7896541230</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">need a lawyer to fight my case</field>
+            <field name="state">request</field>
+            <field name="mat_type">criminal</field>
+            <field name="write_date">2017-10-05 10:50:11</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Representing clients in court, arbitration, administrative and legislative hearings')]"/>
+            <field name="email">m.jackson@gmail.com</field>
+        </record>
+
+        <record id="client_request_yuliakonstantinova0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-07 12:14:12</field>
+            <field name="name">Yulia Konstantinova</field>
+            <field name="contact_no">8523697412</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">need lawyer </field>
+            <field name="state">draft</field>
+            <field name="mat_type">criminal</field>
+            <field name="write_date">2017-10-07 12:14:14</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Representing clients in court, arbitration, administrative and legislative hearings')]"/>
+            <field name="email">yulia@gmail.com</field>
+        </record>
+
+        <record id="client_request_mark0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-07 12:47:20</field>
+            <field name="name">Mark</field>
+            <field name="contact_no">8965412374</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">want to prepare property paper for my client</field>
+            <field name="state">request</field>
+            <field name="mat_type">civil</field>
+            <field name="write_date">2017-10-07 12:47:22</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Preparation of documents')]"/>
+            <field name="email">mark@gmail.com</field>
+        </record>
+
+        <record id="client_request_robutt0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-07 12:49:48</field>
+            <field name="name">Robut T.</field>
+            <field name="contact_no">8523697412</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">want legal advice</field>
+            <field name="state">draft</field>
+            <field name="mat_type">civil</field>
+            <field name="write_date">2017-10-07 12:49:52</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Consultation to review documents (such as agreements, leases, wills, corporation documents, do-it-yourself court forms)')]"/>
+            <field name="email">admin@gmail.com</field>
+        </record>
+
+        <record id="client_request_nobitaj0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-07 12:50:57</field>
+            <field name="name">Nobita J</field>
+            <field name="contact_no">7412589638</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">client request for another law</field>
+            <field name="state">reject</field>
+            <field name="mat_type">criminal</field>
+            <field name="write_date">2017-10-07 12:50:58</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Representing clients in court, arbitration, administrative and legislative hearings')]"/>
+            <field name="email">poi@gmail.com</field>
+        </record>
+
+        <record id="client_request_jeremyjordan0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-06 05:33:13</field>
+            <field name="name">Jeremy Jordan</field>
+            <field name="contact_no">8525143694</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">want legal advice and want to preparation of the will paper.</field>
+            <field name="state">request</field>
+            <field name="mat_type">civil</field>
+            <field name="write_date">2017-10-06 05:33:13</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Preparation of documents')]"/>
+            <field name="email">jeremy@yahoo.com</field>
+        </record>
+
+        <record id="client_request_hena0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-06 05:34:36</field>
+            <field name="name">Hena</field>
+            <field name="contact_no">7452103658</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">want bill paper it urgenta</field>
+            <field name="state">draft</field>
+            <field name="mat_type">civil</field>
+            <field name="write_date">2017-10-06 05:34:36</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Preparation of documents')]"/>
+            <field name="email">hena@gmail.com</field>
+        </record>
+
+        <record id="client_request_vijaymallya0" model="client.request">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="create_date">2017-10-06 05:46:38</field>
+            <field name="name">Vijay Mallya</field>
+            <field name="contact_no">8956123469</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="note">want lawyer who can fight for me</field>
+            <field name="state">request</field>
+            <field name="mat_type">civil</field>
+            <field name="write_date">2017-10-06 05:56:46</field>
+            <field model="client.service" name="services" search="[('name', '=', u'Representing clients in court, arbitration, administrative and legislative hearings')]"/>
+            <field name="email">vijay_rs@gmail.com</field>
+        </record>
+
+        <record id="matter_specialize_admiraltylaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA001</field>
+            <field name="create_date">2017-10-05 07:39:31</field>
+            <field name="name">Admiralty Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:39:31</field>
+        </record>
+
+        <record id="matter_specialize_businesslaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA002</field>
+            <field name="create_date">2017-10-05 07:39:51</field>
+            <field name="name">Business Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:39:51</field>
+        </record>
+
+        <record id="matter_specialize_smallbusinesslaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA003</field>
+            <field name="create_date">2017-10-05 07:40:21</field>
+            <field name="name">Small-business law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:40:21</field>
+        </record>
+
+        <record id="matter_specialize_corporatelaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA004</field>
+            <field name="create_date">2017-10-05 07:40:52</field>
+            <field name="name">Corporate law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:40:52</field>
+        </record>
+
+        <record id="matter_specialize_constitutionallaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA005</field>
+            <field name="create_date">2017-10-05 07:41:15</field>
+            <field name="name">Constitutional Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:41:15</field>
+        </record>
+
+        <record id="matter_specialize_criminallaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA006</field>
+            <field name="create_date">2017-10-05 07:41:48</field>
+            <field name="name">Criminal Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">criminal</field>
+            <field name="write_date">2017-10-05 07:41:48</field>
+        </record>
+
+        <record id="matter_specialize_environmentallaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PZ006</field>
+            <field name="create_date">2017-10-05 07:42:47</field>
+            <field name="name">Environmental Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:42:47</field>
+        </record>
+
+        <record id="matter_specialize_firstamendmentlaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA007</field>
+            <field name="create_date">2017-10-05 07:43:22</field>
+            <field name="name">First Amendment Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:43:22</field>
+        </record>
+
+        <record id="matter_specialize_healthcarelaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA008</field>
+            <field name="create_date">2017-10-05 07:43:50</field>
+            <field name="name">Health Care Law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:43:50</field>
+        </record>
+
+        <record id="matter_specialize_intellectualandpatentlaw0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA009</field>
+            <field name="create_date">2017-10-05 07:44:29</field>
+            <field name="name">Intellectual and Patent law</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:44:29</field>
+        </record>
+
+        <record id="matter_specialize_otherspecialisations0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA010</field>
+            <field name="create_date">2017-10-05 07:46:35</field>
+            <field name="name">Other specialisations</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 07:46:35</field>
+        </record>
+
+        <record id="matter_specialize_childsexualabuse0" model="matter.specialize">
+            <field name="create_uid" ref="base.user_root"/>
+            <field name="code">PA012</field>
+            <field name="create_date">2017-10-05 11:17:34</field>
+            <field name="name">Child sexual abuse</field>
+            <field name="write_uid" ref="base.user_root"/>
+            <field name="spec_type">civil</field>
+            <field name="write_date">2017-10-05 11:17:34</field>
+        </record>
+    </data>
+</odoo>

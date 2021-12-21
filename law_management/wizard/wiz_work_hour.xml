@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard of working Hour -->
+    <record id="wiz_work_hour_form" model="ir.ui.view" >
+        <field name="name">wiz.work.hour.form</field>
+        <field name="model">matter.work.hour</field>
+        <field name="arch" type="xml">
+            <form string="Working Hour">
+                <sheet>
+                    <group>
+                        <field name="work_hour" required="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="wiz_work_hour" string="Create Invoice"
+                        type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"
+                        class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action of the Working Hour-->
+<!--     <record id="law_management.create_invoice" model="ir.actions.act_window">
+        <field name="name">Work Hour</field>
+        <field name="res_model">matter.work.hour</field>
+        <field name="src_model">matter.matter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+ -->
+
+    <record id="law_management.create_invoice" model="ir.actions.act_window">
+        <field name="name">Work Hour</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">matter.work.hour</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="law_management.model_matter_matter" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

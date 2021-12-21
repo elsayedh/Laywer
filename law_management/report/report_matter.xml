@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_matter">
+        <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+               
+                    <div class="page">
+                        <br/>
+                        <div class="align:right"
+                             style="text-align:right;">
+                            <h3>
+                                <b>
+                                   <t t-if="o.state in ['draft', 'approve', 'progress']">
+                                       <span t-esc="o.state"
+                                          style="background-color:yellow;
+                                          		 text-transform:capitalize;
+                                          		 border: 1px solid black;
+                                          		 border-style: double;" />
+                                   </t>
+                                   <t t-if="o.state == 're_open'">
+                                       <span style="background-color:yellow;
+                                           		 text-transform:capitalize;
+                                          		 border: 1px solid black;
+                                          		 border-style: double;" >
+                                          Re Open
+                                       </span>
+                                   </t>
+                                   <t t-if="o.state == 'win'">
+                                       <span style="background-color:#679bef;
+                                           		 text-transform:capitalize;
+                                          		 border: 1px solid black;
+                                          		 border-style: double;" >
+                                          Won
+                                       </span>
+                                   </t>
+                                   <t t-if="o.state == 'lost'">
+                                       <span t-esc="o.state"
+                                           style="background-color:red;
+                                                 text-transform:capitalize;
+                                          		 border: 1px solid black;
+                                          		 border-style: double;" >
+                                       </span>
+                                   </t>
+                                   <t t-if="o.state == 'settlement'">
+                                       <span t-esc="o.state"
+                                           style="background-color:green;
+                                                 text-transform:capitalize;
+                                          		 border: 1px solid black;
+                                          		 border-style: double;" >
+                                       </span>
+                                   </t>
+                                </b>
+                            </h3>
+                        </div>
+                        <center>
+                            <h3><strong>Matter:</strong>
+                                <span t-esc="o.name"></span></h3>
+                        </center>
+                        <table style="text-align:left" width="100%">
+                            <tr>
+                                <td style="font-weight:bold">Dates:</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Opened Date:</strong>
+                                    <span t-esc="o.date_open"/>
+                                </td>
+                                <td><strong>Client Name:</strong>
+                                    <span t-esc="o.mat_client.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Last Trial Date:</strong>
+                                    <span t-esc="o.trial_date"/>
+                                </td>
+                                <td><strong>Lawyer Name:</strong>
+                                    <span t-esc="o.assign_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Closed Date:</strong>
+                                    <span t-esc="o.date_close"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Re-Opened Date:</strong>
+                                    <span t-esc="o.reopen_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Client Name:</strong>
+                                    <span t-esc="o.mat_client.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lawyer Name:</strong>
+                                    <span t-esc="o.assign_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong>Total Number of Trial:</strong>
+                                    <br/>
+                                    <t t-set="bar_img" t-value="make_mat_month_bar_chart(o)"/>
+                                    <t t-if="bar_img">
+	                                    <img t-att-src="'data:image/png;base64,%s' % to_text(bar_img)"
+					                            width="100%" 
+					                            height="330px;"/>
+	                                </t>
+                                </td>
+                             </tr>
+                            <t t-set="pie_img" t-value="make_mat_inv_pie_chart(o)"/>
+                           	<t t-if="pie_img">
+	                             <tr>
+	                                 <td colspan="2">
+	                                     <strong>Trial Invoice Details:</strong>
+	                                     <br/>
+	                                        <img t-att-src="'data:image/png;base64,%s' % to_text(pie_img)"
+					                            width="50%" 
+					                            height="200px;"/>
+	                                </td>
+	                            </tr>
+                			</t>
+                			 <t t-set="trail_img" t-value="make_mat_trails_bar_chart(o)"/>
+                           	<t t-if="trail_img">
+	                             <tr>
+	                                 <td colspan="2">
+	                                     <br/>
+	                                     <br/>
+	                                     <br/>
+	                                     <strong>Trial Result Details:</strong>
+	                                     <br/>
+	                                        <img t-att-src="'data:image/png;base64,%s' % to_text(trail_img)"
+					                            width="100%" 
+					                            height="330px;"/>
+	                                </td>
+	                            </tr>
+                			</t>
+                        </table>
+                        <t t-esc="remove_img(o)" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherited view of res partner  -->
+    <record id ="client_form_view" model="ir.ui.view">
+        <field name="name">client.form.view</field>
+        <field name="model">res.partner</field>
+        <field name ="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type ="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <group>
+                    <field name="client_id" readonly="1" nolabel="1"
+                        attrs="{'invisible':[('part_type','!=','client')]}"/>
+                </group>
+                <label for="name" class="oe_edit_only"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="part_type"/>
+            </xpath>
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+            <field name="company_type" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherited action of Res Partner -->
+    <record id="base.action_partner_form" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('part_type','=','client')]</field>
+        <field name="context">{'default_part_type':'client','hide_part_type':True}
+            </field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a contact in your address book.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a customer: discussions, history of business opportunities,
+            documents, etc.
+          </p>
+        </field>
+    </record>
+
+    <!-- menu for client -->
+    <menuitem id = "client_menu" name="Clients"
+        action="base.action_partner_form" parent="menu_law_main" groups="group_law_erp_admin,group_law_erp_lawyer,group_law_erp_client"/>
+
+       <!-- Inherited view of res partner   -->
+    <record id ="inherited_res_partner_simple_form" model="ir.ui.view">
+        <field name="name">inherited.res.partner.simple.form</field>
+        <field name="model">res.partner</field>
+        <field name ="inherit_id" ref="base.view_partner_simple_form"/>
+        <field name="arch" type ="xml">
+            <field name="company_type" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Form view of client request -->
+    <record id="client_request_view_form" model="ir.ui.view">
+        <field name="name">view.client.request.form</field>
+        <field name="model">client.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="change_draft" string="Draft"
+                        type="object" class="oe_highlight" states="reject"
+                        groups="law_management.group_law_erp_admin"/>
+                    <button name="change_request" string="Request"
+                        type="object" class="oe_highlight" states="draft"
+                        groups="law_management.group_law_erp_lawyer,
+                        law_management.group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+                    <button name="change_approve" string="Approve"
+                        type="object" class="oe_highlight" states="request"
+                        groups="law_management.group_law_erp_admin"/>
+                    <button name="change_reject" string="Reject"
+                        type="object" class="oe_highlight" states="request"
+                        groups="law_management.group_law_erp_admin"/>
+                    <field name="state" widget="statusbar"/>
+                    </header>
+                <sheet>
+                    <group cols="4">
+                        <group>
+                            <field name="name" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="contact_no" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="services" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="email" widget="email" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Matter Details">
+                            <group cols="4">
+                                <group>
+                                    <field name="mat_type" required="1"
+                                        attrs="{'readonly':[('state','not in','draft')]}"/>
+                                    <field name="note" required="1"
+                                        attrs="{'readonly':[('state','not in','draft')]}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view of client request-->
+    <record id="client_request_view_tree" model="ir.ui.view">
+        <field name="name">view.client.request.tree</field>
+        <field name="model">client.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mat_type"/>
+                <field name="contact_no"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view of client request -->
+    <record id="client_request_view_search" model="ir.ui.view">
+        <field name="name">view.client.request.search</field>
+        <field name="model">client.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="fil_type" domain="[]" string="Type"
+                    context="{'group_by':'mat_type'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action of client request -->
+    <record id="client_request_action" model="ir.actions.act_window">
+        <field name="name">Client Request</field>
+        <field name="res_model">client.request</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Matter menu -->
+    <menuitem id ="client_request_menu" name="Client Requests"
+        action="client_request_action" parent="menu_law_main"
+        groups="group_law_erp_admin,group_law_erp_lawyer,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Form view of client Services -->
+    <record id ="client_services_view_form" model="ir.ui.view">
+        <field name="name">view.services.form</field>
+        <field name="model">client.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group cols="4">
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="code" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of client Services -->
+    <record id="client_services_view_tree" model="ir.ui.view">
+        <field name="name">view.services.tree</field>
+        <field name="model">client.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  Action of client Services-->
+    <record id="client_services_action" model="ir.actions.act_window">
+        <field name="name">Client Services</field>
+        <field name="res_model">client.service</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Client Services Menu  -->
+    <menuitem id="client_service_menu" action ="client_services_action"
+        name="Client Services" parent="menu_law_config" groups="law_management.group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Inherited view of res partner bank form  -->
+    <record id ="inherited_res_partner_bank_form" model="ir.ui.view">
+        <field name="name">inherited.res.partner.bank.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name ="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type ="xml">
+            <field name="acc_number" position="after">
+                <field name="empl_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

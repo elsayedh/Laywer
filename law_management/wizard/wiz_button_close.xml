@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard of close button -->
+    <record id="wiz_close_button_form" model="ir.ui.view" >
+        <field name="name">wiz.close.button.form</field>
+        <field name="model">matter.close.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Trial">
+                <sheet>
+                    <group>
+                        <group cols="4">
+                            <field name="date" required="1"/>
+                        </group>
+                        <group cols="4">
+                            <field name="act_type" required="1"/>
+                        </group>
+                    </group>
+                    <group string="comments">
+                        <field name="descript" required="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="wiz_close_action" string="Close" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action of the evidence matter-->
+<!--     <record id="law_management.button_close" model="ir.actions.act_window">
+        <field name="name">Matter Close</field>
+        <field name="res_model">matter.close.wizard</field>
+        <field name="src_model">matter.matter</field>
+        binding_model="crm.lead" binding_views="list"
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>  -->
+
+    
+    <record id="law_management.button_close" model="ir.actions.act_window">
+        <field name="name">Matter Close</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">matter.close.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="law_management.model_matter_matter" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

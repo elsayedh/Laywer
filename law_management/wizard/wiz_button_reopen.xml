@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard of reopen button -->
+    <record id="wiz_reopen_button_form" model="ir.ui.view" >
+        <field name="name">wiz.reopen.button.form</field>
+        <field name="model">matter.reopen.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Re-Open">
+                <sheet>
+                    <group colspan="6" cols="6">
+                        <group>
+                            <field name="reopen_date" required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="reason" required="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="wiz_reason_action" string="Re-Open" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action of the reopen button-->
+<!--     <record id="law_management.button_reopen" model="ir.actions.act_window">
+        <field name="name">Matter Re-Open</field>
+        <field name="res_model">matter.reopen.wizard</field>
+        <field name="src_model">matter.matter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>  -->
+
+    
+    <record id="law_management.button_reopen" model="ir.actions.act_window">
+        <field name="name">Matter Re-Open</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">matter.reopen.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="law_management.model_matter_matter" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

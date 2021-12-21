@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- form view of matter -->
+    <record id="matter_form_view" model="ir.ui.view">
+        <field name="name">view.matter.form</field>
+        <field name="model">matter.matter</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="change_approve" string="Approve" type="object"
+                        class="oe_highlight" states="draft"
+                        groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="change_in_progress" string="In Progress"
+                        type="object" class="oe_highlight" states="approve,re_open"
+                        groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="matter_close" string="Close"
+                        type="object" class="oe_highlight" states="progress"
+                        groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="%(law_management.button_reopen)d" type="action"
+                        string="Re Open" class="oe_highlight"
+                        states="win,lost,settlement" groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <button name="create_invoice_matter"
+                        type="object" string="Create Invoice"
+                        class="oe_highlight" attrs="{'invisible':
+                        ['|',('pay_type','not in', ['pay_per_hour', 'pay_per_fixed']),
+                        ('state','!=','progress')]}"
+                        groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,approve,progress"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"
+                        position="inside">
+                        <button name="open_evidence"
+                            type="object"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('state','in',['win','lost','settlement'])]}"
+                            icon="fa-search"
+                            context="{'admin_evidence': True}"
+                            help="Evidence related to the matter">
+                         <field string="Evidence" name="evidence_count"
+                            widget="statinfo"/>
+                        </button>
+                        <button name="open_evidence"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-search"
+                            context="{'user_evidence': True}"
+                            attrs="{'invisible':[('state','not in',['win','lost','settlement'])]}"
+                            help="Evidence related to the matter. no evidence will be created.">
+                         <field string="Evidence" name="evidence_count1"
+                            widget="statinfo"/>
+                        </button>
+                        <button name="open_trial"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-retweet"
+                            attrs="{'invisible':[('state','in',['draft','approve','win','lost','settlement'])]}"
+                            help="Trials related to the matter">
+                        <field string="Trials" name="trial_count"
+                             widget="statinfo"/>
+                        </button>
+                        <button name="open_trial"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-retweet"
+                            attrs="{'invisible':[('state','not in',['win','lost','settlement'])]}"
+                            context="{'user_trial': True}"
+                            help="Trials related to the matter no trial create!!!!!!!!!!!!">
+                        <field string="Trials" name="trial_count1"
+                             widget="statinfo"/>
+                        </button>
+                        <button name="%(law_management.matter_invoice)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state','in',['draft','approve'])]}"
+                            help="matter Invoice">
+                         <field string="Invoice" name="invoice_count"
+                            widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="matter_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group cols = "4">
+                            <field name="name" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="type" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="category_id" required="1"
+                                domain="[('type','=',type)]"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="assign_id" required="1"
+                                domain="[('is_lawyer','=',True)]"
+                                attrs="{'readonly':[('state','not in','draft')]}"
+                                context="{'default_lawyer_type': 'lawyer'}"/>
+                            <field name="prac_area" widget="many2many_tags"
+                                attrs="{'readonly':[('state','not in','draft')]}"
+                                options='{"no_create": True}'/>
+                            <field name="mat_client" required="1"
+                                domain="[('part_type','=','client')]"
+                                attrs="{'readonly':[('state','not in','draft')]}"
+                                context="{'default_part_type': 'client'}"
+                                />
+                            <field name="pay_type"
+                                attrs="{'readonly':[('state','in',['progress','win','lost','settlement'])],
+                                        'required':[('state','in','approve')]}"/>
+                            <field name="invoice_id" readonly = "1"
+                                invisible="1"/>
+                            <field name="is_reopen" invisible="1"/>
+                            <field name="is_close" invisible="1"/>
+                        </group>
+                        <group string="Important Dates">
+                            <field name="date_open" required="1"
+                                attrs="{'readonly':[('state','not in','draft')]}"/>
+                            <field name="trial_date" readonly = "1"
+                                attrs="{'invisible':[('state','in',['draft','approve'])]}"/>
+                            <field name="date_close" readonly="1"
+                                attrs="{'invisible':[('is_close','=', False)],
+                                'readonly':[('state','in','re_open')]}"/>
+                            <field name="reopen_date" readonly="1"
+                                attrs="{'invisible':[('is_reopen','=',False)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"
+                                    attrs="{'readonly':
+                                    [('state','not in','draft')]}"/>
+                            </page>
+                            <page string="Matter Details">
+                                <group cols="4">
+                                    <group>
+                                        <field name="date" attrs="{'readonly':
+                                            [('state','in',['win','lost','settlement'])]}"/>
+                                        <field name="location"
+                                            attrs="{'invisible':
+                                            [('type','!=', 'criminal')],
+                                            'readonly':[('state','in',
+                                            ['win','lost','settlement'])]}"/>
+                                        <field name="weapon"
+                                            attrs="{'invisible':
+                                            [('type','!=', 'criminal')],
+                                            'readonly':[('state','in',
+                                            ['win','lost','settlement'])]}"/>
+                                    </group>
+                                    <group>
+                                       <field name="attack_ids"
+                                           attrs="{'readonly':[('state','in',
+                                           ['win','lost','settlement'])]}"
+                                           domain="[('attack_type','=',type)]"
+                                           context="{'default_matter_id':id}"
+                                           widget="many2many_tags"/>
+                                        <field name="death"
+                                            attrs="{'invisible':
+                                            [('type','!=', 'criminal')],
+                                            'readonly':[('state','in',
+                                            ['win','lost','settlement'])]}"/>
+                                    </group>
+                                </group>
+                                <separator string="Victims" colspan="6"/>
+                                    <field name="victim_ids" nolabel="1" attrs="{'readonly':
+                                        [('state','in',['win','lost','settlement'])]}"/>
+                                <separator string="Perpetrators" colspan="6"/>
+                                    <field name="perpeterator_ids" nolabel="1" attrs="{'readonly':
+                                        [('state','in',['win','lost','settlement'])]}"/>
+                                <separator string="Suspects" />
+                                    <field name="suspect_ids" nolabel="1" attrs="{'readonly':
+                                        [('state','in',['win','lost','settlement'])]}">
+                                        <form>
+                                            <field name="image"
+                                                        widget='image' nolabel="1"
+                                                        class="oe_avatar"/>
+                                            <div class="oe_title">
+                                            <h2>
+                                                <label for="name"
+                                                    class="oe_edit_only"/>
+                                                <field name="name"
+                                                                placeholder="Suspect's Name"
+                                                                 required="1"/>
+                                            </h2>
+                                            </div>
+                                            <group>
+                                                <field name="note" required="1"/>
+                                            </group>
+                                        </form>
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="note"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                            <page string="Documents">
+                               <field name="mat_doc_ids"
+                                   attrs="{'readonly':[('state','in',
+                                   ['win','lost','settlement'])]}" >
+                                   <form>
+                                       <group colspan="4">
+                                           <field name="mat_doc_attach_id"
+                                               required="1"
+                                               widget="many2many_binary"/>
+                                           <field name="comment" required="1"/>
+                                       </group>
+                                   </form>
+                                   <tree>
+                                       <field name="mat_doc_attach_id"/>
+                                       <field name="comment"/>
+                                   </tree>
+                               </field>
+                            </page>
+                            <page string="Acts and Articles">
+                                <separator string="Acts"/>
+                                    <field name="act_ids" attrs="{'readonly':
+                                        [('state','in',['win','lost','settlement'])]}"/>
+                                <separator string="Articles"/>
+                                    <field name="article_ids" attrs="{'readonly':
+                                        [('state','in',['win','lost','settlement'])]}"/>
+                            </page>
+                            <page string="Opposition">
+                                <field name="opposition_ids" attrs="{'readonly':
+                                    [('state','in',['win','lost','settlement'])]}">
+                                    <form>
+                                        <group string="Opposition Party" cols="4">
+                                            <group >
+                                                <field name="name"
+                                                     context="{'default_type': 'client'}"
+                                                    required="1"/>
+                                                </group>
+                                            <group>
+                                                <field name="cli_contact"/>
+                                            </group>
+                                        </group>
+                                        <group string="Lawyer" cols="4">
+                                            <group>
+                                                <field name="oppo_lawyer"
+                                                    context="{'default_type': 'lawyer'}"
+                                                    required="1"/>
+                                            </group>
+                                            <group>
+                                                <field name="opp_contact"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="cli_contact"/>
+                                        <field name="oppo_lawyer" />
+                                        <field name="opp_contact"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Contact Person Details">
+                                <field name="mat_contact" attrs="{'readonly':
+                                    [('state','in',['win','lost','settlement'])]}">
+                                    <form>
+                                        <field name="image"
+                                                   widget='image' nolabel="1"
+                                                   class="oe_left oe_avatar"/>
+                                        <div class="oe_title">
+                                            <h2>
+                                                <label for="name"
+                                                    class="oe_edit_only"/>
+                                                <field name="name" placeholder="Enter Name" required="1"/>
+                                            </h2>
+                                        </div>
+
+                                        <group cols="6">
+                                            <group>
+                                                <field name="matt_contact"
+                                                    required="1"/>
+                                                <label for="street" string="Address"/>
+                                                <div class="o_address_format">
+                                                    <field name="street"
+                                                        placeholder="Street..."
+                                                        class="o_address_street"/>
+                                                    <field name="street2"
+                                                        placeholder="Street 2..."
+                                                        class="o_address_street"/>
+                                                    <field name="city"
+                                                        placeholder="City"
+                                                        class="o_address_city"/>
+                                                    <field name="state_id"
+                                                        class="o_address_state"
+                                                        placeholder="State"
+                                                         options='{"no_open": True}'/>
+                                                    <field name="zip"
+                                                        placeholder="ZIP"
+                                                        class="o_address_zip"/>
+                                                    <field name="country_id"
+                                                        placeholder="Country"
+                                                        class="o_address_country"
+                                                        options='{"no_open": True, "no_create": True}'/>
+                                                </div>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="comments"
+                                                required="1"/>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="matt_contact"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="History">
+                                <field name="mat_result_ids" readonly="0">
+                                    <form>
+                                        <group name="Result" cols="4">
+                                            <group>
+                                                <field name="result_date"/>
+                                                <field name="result_type"/>
+                                            </group>
+                                            <group>
+                                                <field name="result_descript"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="result_date"/>
+                                        <field name="result_type"/>
+                                    </tree>
+                                </field>
+                                <field name="matter_history_ids" readonly="1">
+                                    <form>
+                                        <group cols="4">
+                                            <group>
+                                                <field name="name"/>
+                                            </group>
+                                            <group>
+                                                <field name="hist_date"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="reason"/>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="hist_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view of matter -->
+    <record id="matter_tree_view" model="ir.ui.view">
+        <field name="name">view.matter.tree</field>
+        <field name="model">matter.matter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="matter_seq"/>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="assign_id"/>
+                <field name="state"/>
+                <field name="mat_client"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view of matter -->
+    <record id="matter_search_view" model="ir.ui.view">
+        <field name="name">view.matter.search</field>
+        <field name="model">matter.matter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="assign_id"/>
+                <field name="state"/>
+                <filter name="fil_type" domain="[]" string="Type"
+                    context="{'group_by':'type'}"/>
+                <filter name="fil_state" domain="[]" string="State"
+                    context="{'group_by':'state'}"/>
+                <filter name="fil_assign_id" domain="[]" string="Assign To"
+                    context="{'group_by':'assign_id'}"/>
+                <filter name="fil_mat_client" domain="[]" string="Client"
+                    context="{'group_by':'mat_client'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Pivot View of Matter-->
+    <record id="matter_matter_pivot_view" model="ir.ui.view">
+        <field name="name">matter.pivot.view</field>
+        <field name="model">matter.matter</field>
+        <field name="arch" type="xml">
+            <pivot string="Matter Analysis">
+                <field name="name" type="row"/>
+                <field name="state" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View-->
+        <record id="matter_analysis_graph_view" model="ir.ui.view">
+            <field name="name">matter.analysis.graph.view</field>
+            <field name="model">matter.matter</field>
+            <field name="arch" type="xml">
+                <graph string="matter Analysis" type="bar" stacked="True">
+                    <field name="name" type="row"/>
+                    <field name="state" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+    <!-- Action for Graph Pivot view of Matter
+    <record id="matter_analysis_action" model="ir.actions.act_window">
+        <field name="name">Matter Analysis</field>
+        <field name="res_model">matter.matter</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+    </record>-->
+
+    <!-- Action of Matter -->
+    <record id="matter_mater_action" model="ir.actions.act_window">
+        <field name="name">Matter</field>
+        <field name="res_model">matter.matter</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,pivot,graph,form</field>
+    </record>
+
+     <!-- Menu for Law Management -->
+    <menuitem id="menu_law_root" name="Law Management" sequence="75"
+        groups="law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Main menu -->
+     <menuitem id="menu_law_main" name="Law Management"
+         parent="menu_law_root" sequence="0" groups="law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Matter menu -->
+    <menuitem id ="menu_matter" name="Matters" action="matter_mater_action"
+        parent="menu_law_main" sequence="2"
+        groups="law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client"/>
+
+    <!-- Menu for Report -->
+    <menuitem id="menu_report" name="Report" parent="menu_law_root" sequence ="2"
+        groups="law_management.group_law_erp_admin,law_management.group_law_erp_lawyer"/>
+
+    <!-- Menu for Matter Analysis
+    <menuitem id="menu_matter_analysis" action="matter_analysis_action"
+        name="Matter Analysis" parent="menu_report"/>-->
+
+    <!-- Form view of Category -->
+    <record id ="category_form_view" model="ir.ui.view">
+        <field name="name">view.category.form</field>
+        <field name="model">matter.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="type" required="1"/>
+                        </group>
+                        <group>
+                            <field name="code" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Category -->
+    <record id="category_tree_view" model="ir.ui.view">
+        <field name="name">view.category.tree</field>
+        <field name="model">matter.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Search view of category -->
+    <record id ="category_search_view" model="ir.ui.view">
+        <field name="name">view.category.search</field>
+        <field name="model">matter.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="type"/>
+                <filter name="fil_type" domain="[]" string="Type"
+                    context="{'group_by':'type'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action of category -->
+    <record id="matter_category_action" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">matter.category</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_law_config" name="Configuration" sequence="3"
+         parent="menu_law_root" groups="group_law_erp_admin,group_law_erp_lawyer,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Category Menu  -->
+    <menuitem id="menu_matter_category" action ="matter_category_action"
+        name="Categories" parent="menu_law_config"
+        sequence ="1" groups="law_management.group_law_erp_help_desk_officer,group_law_erp_admin"/>
+
+    <!-- Form view of victims -->
+    <record id="victim_form_view" model="ir.ui.view">
+        <field name="name">view.victim.form</field>
+        <field name="model">matter.victim</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for victim -->
+    <record id="act_victim" model="ir.actions.act_window">
+        <field name="name">Victims</field>
+        <field name="res_model">matter.matter</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- Form view of Attack type -->
+    <record id="attack_form_view" model="ir.ui.view">
+        <field name="name">view.attack.form</field>
+        <field name="model">criminal.attack</field>
+        <field name="arch" type="xml">
+            <form>
+                <group cols="4">
+                    <group>
+                        <field name="matter_id" />
+                        <field name="name" required="1"/>
+                        <field name="code" required="1"/>
+                    </group>
+                    <group>
+                        <field name="attack_type" required="1" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Attack Type-->
+    <record id="criminal_attack_tree_view" model="ir.ui.view">
+        <field name="name">view.attack.tree</field>
+        <field name="model">criminal.attack</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="attack_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view of perpetrator -->
+    <record id="perpeterator_form_view" model="ir.ui.view">
+        <field name="name">view.perpetrator.form</field>
+        <field name="model">matter.perpetrator</field>
+        <field name="arch" type="xml">
+            <form>
+                <group cols="4">
+                    <field name="name" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Attack Type-->
+    <record id="attack_tree_view" model="ir.ui.view">
+        <field name="name">view.perpetrator.tree</field>
+        <field name="model">matter.perpetrator</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Attack Type -->
+    <record id="act_attack_type" model="ir.actions.act_window">
+        <field name="name">Perpetrator</field>
+        <field name="res_model">matter.perpetrator</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">form,tree</field>
+    </record>
+
+    <!-- Form view of Judge -->
+    <record id="judge_form_view" model="ir.ui.view">
+        <field name="name">view.judge.form</field>
+        <field name="model">matter.judge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group cols="4">
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                        <group>
+                            <field name="phone" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Judge-->
+    <record id="judge_tree_view" model="ir.ui.view">
+        <field name="name">view.judge.tree</field>
+        <field name="model">matter.judge</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of Judge -->
+    <record id="act_judge" model="ir.actions.act_window">
+        <field name="name">Judge Details</field>
+        <field name="res_model">matter.judge</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu for judge -->
+    <menuitem id ="menu_judge" name="Judges" action="act_judge"
+        parent="menu_law_config" groups="group_law_erp_admin,group_law_erp_lawyer,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Form view of Contact Person Detail -->
+    <record id="contact_detail_form_view" model="ir.ui.view">
+        <field name="name">view.contact.detail.form</field>
+        <field name="model">matter.contact</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget='image' nolabel="1"
+                        class="oe_left oe_avatar"/>
+                    <div class="oe_title">
+                        <h2>
+                            <label for="name" class="oe_edit_only"/>
+                            <field name="name" placeholder="Enter Name" required="1"/>
+                        </h2>
+                    </div>
+                    <group cols="6">
+                        <group>
+                            <field name="matt_contact"
+                                required="1"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street"
+                                    placeholder="Street..."
+                                    class="o_address_street"/>
+                                <field name="street2"
+                                    placeholder="Street 2..."
+                                    class="o_address_street"/>
+                                <field name="city"
+                                    placeholder="City"
+                                    class="o_address_city"/>
+                                <field name="state_id"
+                                    class="o_address_state"
+                                    placeholder="State"
+                                     options='{"no_open": True}'/>
+                                <field name="zip"
+                                    placeholder="ZIP"
+                                    class="o_address_zip"/>
+                                <field name="country_id"
+                                    placeholder="Country"
+                                    class="o_address_country"
+                                    options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

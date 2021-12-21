@@ -1,0 +1,107 @@
+===============================================================================
+ Version Change Log (Law_Management)
+===============================================================================\
+1.20 --> 6 November 2017 : Antonyraj J
+	* Improved the access rights of lawyer.
+	
+1.19 --> 4 November 2017 : Antonyraj J
+	* Added validation in write method for lawyer edit.
+	* Improved access rights for lawyer table.
+	
+1.18 --> 3 November 2017 : Antonyraj J
+	* Change action name and placeholder in opposition lawyer.
+
+1.17 --> 2 November 2017 : Antonyraj J
+	* Improved and fixed the access rights for lawyer.
+	* Fixed issue in matter form and matter report.
+
+1.16 --> 1 November 2017 : Antonyraj J
+	* Improved and fixed the security.
+	* Added restriction to duplicate for help desk manager.
+	* Hid the send by mail button for client in invoice.
+	* Rearranged the opposition party module.
+	
+1.15 --> 27 October 2017 : Antonyraj J
+	* Improved the matter report.
+	* Change Practice area action label name.
+	
+1.14 --> 26 October 2017 : Antonyraj J
+	* Fixed issue in invioce creation in trails with payment type as fees per trial.
+	
+1.13 --> 26 October 2017 : Antonyraj J
+	* Fixed issue in clients updation in lawyer user form.
+	* Added invoice for fees fixed payment type.
+	* Added validation for matter close with invoice.
+	* Added validation for trail creation with invoice.
+	* Fixed issue in invoice creation when payment type is fees trail.
+	
+1.12 --> 25 October 2017 : Antonyraj J
+	* Added lawyer additional payment type in Matter and lawyer.
+	* Added invoice functionality for fees fixed.
+	* Fixed issue in clients update in lawyer user.
+	* Fixed issue in Matter report.
+	* Improved lawyer report.
+
+1.11 --> 24 October 2017 : Antonyraj J
+	* Fixed issue in report for lawyer.
+	* Improved the matter report.
+
+1.10 --> 24 October 2017 : Antonyraj J
+	* Fixed issue in report for lawyer.
+	* Fixed issue in lawyer cases count in wizard.
+	* Fixed image issue in Opposition lawyer form.
+	* Improved matter reports.
+	
+1.9 --> 23 October 2017 : Antonyraj J
+	* Fixed issue in report for lawyer.
+	* Aligned code as per Pep8 standard.
+	
+1.8 --> 18 October 2017 : Antonyraj J
+	* Improved q-web report for lawyer.
+	
+1.7 --> 17 October 2017 : Antonyraj J
+	* Fixed issue in opposition lawyer.
+	* Fixed issue in lawyer graph view.
+	* Added access rights for admin,lawyer,client,desk help officer with oppostion lawyer.
+	* Added attrs for result group in trails.
+
+1.6 --> 16 October 2017 : Antonyraj J
+	* Added record rule for lawyer.
+	* Created help desk officer group.
+	* Updated sequence for trail based on matters.
+	* Added unlink function to matter category.
+
+1.5 --> 13 October 2017 : Antonyraj J
+	* Added mandatory to language in skill at lawyer form.
+	* Solved alignment issue in description in atcs form.
+	* Hid the refund button for clients using xpath.
+	* Added context to while creating new opposition lawyer
+	  through matter.
+	  
+1.4 -->12 October 2017 : Vacha Trivedi
+    *Fixed the access error of resource and resource calander error by lawyer login.
+    *inherited kanban view and hide create button in trial.
+
+1.3 --> 12 October 2017 : Antonyraj J
+	* Added read only to related user field under HR settings tab in Lawyer form.
+	* Added widget for acts and articles fields under Acts and Articles tab in lawyer form.
+	* Removed individual and company radio button in lawyer form view.
+	* Removed create and edit option for practice area in lawyer form.
+	* Added constrains for result field in Trail form.
+	* Removed result validation from Constrains of date and result.
+	* Added label for result in trails.
+	* Added certificate field as many2one in employee qualification.
+	* Added string attribute to binary field in employee qualification
+
+1.2 -->11 October 2017 : Vacha Trivedi
+    * Merged the code in related files and removed unused files,for views and py.
+
+1.1 --> 6 October 2017 : Himangi Bhardwaj
+    * added access rights and record rule,
+    added parser file for matter report,
+    added client service and practice area menu,graph, pivot view for trials.
+    solved the issues of lawyer, client, opposition lawyer records, experience
+    and qualification page.
+
+1.0 --> 13 June 2017 : Himangi Bhardwaj
+    * Developed new module Law Management

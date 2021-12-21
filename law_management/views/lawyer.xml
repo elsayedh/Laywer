@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherited view of employee  -->
+    <record id ="lawyer_form_view" model="ir.ui.view">
+        <field name="name">lawyer.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name ="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type ="xml">
+            <xpath expr="//field[@name='category_ids']" position="after">
+                <group cols="4">
+                    <field name="is_lawyer"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="before">
+                <field name="spec_ids" widget="many2many_tags" attrs="{'required':[('is_lawyer','!=',False)]}"/>
+            </xpath>
+            <xpath expr ="//notebook/page[@name='hr_settings']/group/group[@name='active_group']/field[@name='user_id']">
+                <field name="id" invisible="1"/>
+                <field name="create_uid" attrs="{'invisible':[('id','!=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='bank_account_id']" position="attributes">
+                <attribute name="domain">[('empl_id','=','active_id')]</attribute>
+                <attribute name="context">{'default_empl_id':id}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='address_home_id']" position="after">
+                <field name="contact"/>
+            </xpath>
+            <field name="work_email" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('is_lawyer','=',True)]}
+                </attribute>
+            </field>
+            <field name="category_ids" position="replace"/>
+            <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                <field name="employment_date" />
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="placeholder">Lawyer's Name</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='public']" position="inside">
+                <group string="Fees" cols="4" colspan="6">
+                    <group>
+                        <field name="fees_hour" required="1"/>
+                        <field name="fees_fixed" required="1"/>
+                    </group>
+                    <group>
+                        <field name="fees_trial" required="1"/>
+                    </group>
+                </group>
+                <group string="Skills">
+                    <field name="skills_ids" nolabel="1">
+                        <tree editable="top">
+                            <field name="language_id"
+                                options="{'no_create': True}"/>
+                            <field name="arg_approach"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group >
+                                    <field name="language_id"
+                                     options="{'no_create': True}"/>
+                                </group>
+                                <group>
+                                    <field name="arg_approach"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='birthday']" position="after">
+                <field name="age"/>
+            </xpath>
+            <!-- <field name="notes" position ="replace"></field> -->
+            <field name="birthday" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('is_lawyer','=',True)]}
+                </attribute>
+            </field>
+            <field name="work_phone" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('is_lawyer','=',True)]}
+                </attribute>
+            </field>
+            <field name="mobile_phone" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('is_lawyer','=',True)]}
+                </attribute>
+            </field>
+            <xpath expr="//notebook/page[@name='public']" position="attributes">
+                <attribute name="groups">
+                    law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client
+                </attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='personal_information']" position="attributes">
+                <attribute name="groups">
+                    law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client
+                </attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='hr_settings']" position="attributes">
+                <attribute name="groups">
+                    law_management.group_law_erp_admin,law_management.group_law_erp_lawyer,law_management.group_law_erp_client
+                </attribute>
+            </xpath>
+          
+            <field name="address_id" position="attributes">
+                <attribute name="domain">[('part_type','=','lawyer')]</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <notebook position='inside'>
+                <page name='qualification' string="Qualification">
+                    <separator string="Academics" col="4" colspan="4"/>
+                    <group col="4" colspan="4">
+                        <field name = "degree_ids" nolabel="1">
+                            <tree editable="top">
+                                <field name="degree_id" required="1" domain="[('type','=','degree')]"
+                                 context="{'default_type': 'degree'}"/>
+                                <field name="certy_id" required="1" domain="[('type','=','certificate')]"
+                                 context="{'default_type': 'certificate'}"/>
+                                <field name="passing_year"/>
+                                <field name="institute_id"/>
+                                <field name="uni_id"/>
+                                <field name="perc"/>
+                                <field name="certy" filename='file_name'/>
+                                <field name="file_name" invisible="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page name='experience' string="Experience">
+                    <separator string="Experience Information"/>
+                    <group col="4" colspan="4">
+                        <field name ="previous_exp"/>
+                        <field name ="current_exp"/>
+                        <field name ="gap"/>
+                        <field name ="total_exp"/>
+                        <field name ="countable_exp" />
+                    </group>
+                    <separator string="Current Cases"/>
+                        <group cols="4">
+                            <group>
+                                <field name="case_assign" />
+                                <field name="case_won"/>
+                                <field name="case_lost"/>
+                            </group>
+                            <group>
+                                <field name="case_settle"/>
+                                <field name="tot_cases"/>
+                            </group>
+                        </group>
+                </page>
+            </notebook>
+        </field>
+
+     </record>
+
+    <!-- Inherited view of employee -->
+    <record id ="lawyer_tree_view" model="ir.ui.view">
+        <field name="name">lawyer.tree.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type ="xml">
+            <field name="name" position="before">
+                <field name="lawyer_id"/>
+            </field>
+            <field name="work_phone" position="replace"></field>
+            <field name="work_email" position="replace"></field>
+            <field name="job_id" position="replace"></field>
+        </field>
+    </record>
+
+     <!-- Graph View -->
+    <record id="lawyer_analysis_graph_view" model="ir.ui.view">
+        <field name="name">lawyer.analysis.graph.view</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <graph string="Lawyer Analysis" type="bar">
+                <field name="name" type="col"/>
+                <field name="tot_cases" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View of Matter-->
+    <record id="lawyer_analysis_pivot_view" model="ir.ui.view">
+        <field name="name">lawyer.pivot.view</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <pivot string="Lawyer Analysis">
+                <field name="name"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Kanban View of employee-->
+    <record id="lawyer_kanban_view" model="ir.ui.view">
+        <field name="name">hr.employee.kanban</field>
+        <field name="model">hr.employee</field>
+        <field name ="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <kanban position="attributes">
+    			<attribute name="group_create">false</attribute>
+    			<attribute name="quick_create">false</attribute>
+			</kanban>
+        </field>
+     </record>
+     
+
+    <!-- Action for lawyer -->
+    <record id="open_view_lawyer_list_my" model="ir.actions.act_window">
+        <field name="name">Lawyer</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,graph,pivot,form,tree</field>
+        <field name="domain">[('is_lawyer','=',True)]</field>
+        <field name="context">
+            {'default_is_lawyer':True,'hide_is_lawyer':False}
+        </field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add new lawyer
+          </p>
+        </field>
+    </record>
+
+    <!-- Form view for opposition lawyer -->
+    <record id="opposition_lawyer_form_view" model="ir.ui.view">
+        <field name="name">opposition.lawyer.form.view</field>
+        <field name="model">opposition.lawyer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget='image' class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" required="1" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group cols="4">
+	                        <field name='contact_no'/>
+	                        <field name='prac_area' widget="many2many_tags"/>
+                        </group>
+                        <group cols="4">
+	                        <field name='no_case_won'/>
+	                        <field name='no_case_lost'/>
+                       </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <!-- Tree view for opposition lawyer -->
+    <record id="opposition_lawyer_tree_view" model="ir.ui.view">
+        <field name="name">opposition.lawyer.tree.view</field>
+        <field name="model">opposition.lawyer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='name'/>
+                <field name='contact_no'/>
+             </tree>
+        </field>
+    </record>
+
+    <!-- search view of opposition lawyer -->
+    <record id="opposition_lawyer_search_view" model="ir.ui.view">
+        <field name="name">opposition.lawyer.search</field>
+        <field name="model">opposition.lawyer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="prac_area"/>
+               	<field name='no_case_won'/>
+                <field name='no_case_lost'/>
+                <filter name="fil_name" domain="[]" string="Name"
+                    context="{'group_by':'name'}"/>
+                <filter name="fil_prac_area" domain="[]" string="Practice Area"
+                    context="{'group_by':'prac_area'}"/>
+                <filter name="fil_no_case_won" domain="[]" string="Cases Won"
+                    context="{'group_by':'no_case_won'}"/>
+                <filter name="fil_no_case_lost" domain="[]" string="Cases Lost"
+                    context="{'group_by':'no_case_lost'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for opposition lawyer -->
+     <record id="action_oppo_lawyer" model="ir.actions.act_window">
+            <field name="name">Opposition</field>
+            <field name="res_model">opposition.lawyer</field>
+            <field name="domain">[('type','=','lawyer')]</field>
+            <field name="context">{'default_type':'lawyer'}</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add new Opposition lawyer
+              </p>
+            </field>
+        </record>
+
+     <!-- Action for Graph view of Matter -->
+    <record id="lawyer_analysis_action" model="ir.actions.act_window">
+        <field name="name">Lawyer Analysis</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="domain">[('is_lawyer','=',True)]</field>
+        <field name="context">{'default_is_lawyer':True,'hide_is_lawyer':False}</field>
+    </record>
+
+    <!-- Menu for Lawyer -->
+    <menuitem
+            id="menu_open_view_lawyer_list_my" action="open_view_lawyer_list_my"
+            parent="menu_law_main" sequence="3" groups="law_management.group_law_erp_admin,law_management.group_law_erp_lawyer"/>
+
+    <!-- Menu for Lawyer Analysis -->
+    <menuitem id="menu_lawyer_analysis" action="lawyer_analysis_action"
+        name="Lawyer Analysis" parent="menu_report" groups="group_law_erp_admin,group_law_erp_lawyer"/>
+
+    <!-- Menu for opposition Lawyer -->
+    <menuitem id="menu_opp_lawyer" action="action_oppo_lawyer"
+      name="Opposition Lawyer" parent="menu_law_config" groups="law_management.group_law_erp_help_desk_officer,law_management.group_law_erp_admin,law_management.group_law_erp_lawyer"/>
+
+    <!-- Form view of Specialization -->
+    <record id="specialize_form_view" model="ir.ui.view">
+        <field name="name">view.specialize.form</field>
+        <field name="model">matter.specialize</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group colspan="4" col="4">
+                        <field name="name" required="1"/>
+                        <field name="code" required="1"/>
+                        <field name="spec_type" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Specialization -->
+    <record id="specialize_tree_view" model="ir.ui.view">
+        <field name="name">view.specialize.tree</field>
+        <field name="model">matter.specialize</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="spec_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for specialization -->
+    <record id="act_specialize" model="ir.actions.act_window">
+	    <field name="name">Practice Area</field>
+	    <field name="res_model">matter.specialize</field>
+    </record>
+
+    <!-- Specialization Menu  -->
+    <menuitem id="menu_specialize" action ="act_specialize"
+        name="Practice Area" parent="menu_law_config" groups="law_management.group_law_erp_lawyer,law_management.group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+
+    <menuitem
+            id="hr.menu_hr_root"
+            name="Employees"
+            groups="hr.group_hr_manager,-law_management.group_law_erp_help_desk_officer,-base.group_user,group_law_erp_admin"
+            web_icon="hr,static/description/icon.png"
+            sequence="75"/>
+
+        <!-- Search view for employee degree -->
+    <record model="ir.ui.view" id="emp_degree_search_id">
+        <field name="name">emp.degree.scs.search</field>
+        <field name="model">emp.degree</field>
+        <field name="arch" type="xml">
+            <search string="Degree">
+                <field name="name" />
+                <field name="code" />
+            </search>
+        </field>
+    </record>
+
+    <!-- tree view for employee degree -->
+    <record model="ir.ui.view" id="emp_degree_tree_id">
+        <field name="name">emp.degree.scs.tree</field>
+        <field name="model">emp.degree</field>
+        <field name="arch" type="xml">
+            <tree string="Degree">
+                <field name="name" />
+                <field name="code" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view for employee degree -->
+    <record model="ir.ui.view" id="emp_degree_form_id">
+        <field name="name">emp.degree.scs.form</field>
+        <field name="model">emp.degree</field>
+        <field name="arch" type="xml">
+            <form string="Degree">
+                <sheet>
+                    <group>
+                        <field name="name" required='1' />
+                        <field name="code" required='1' />
+                        <field name="type" required='1' invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- action for employee degree -->
+    <record id="action_add_degree" model="ir.actions.act_window">
+        <field name="name">Degrees</field>
+        <field name="res_model">emp.degree</field>
+        <field name='domain'>[('type','=','degree')]</field>
+        <field name='context'>{'default_type':'degree'}</field>
+    </record>
+
+    <!-- menu for employee degree -->
+    <menuitem id="menu_emp_degree" action="action_add_degree"
+        parent="menu_law_config" groups="group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Form view for employee institute -->
+    <record id="emp_institute_form_view" model="ir.ui.view">
+        <field name="name">emp.institute.form.view</field>
+        <field name="model">emp.institute</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name='name' required="1"/>
+                        <field name='code'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for employee institute -->
+    <record id="emp_institute_tree_view" model="ir.ui.view">
+        <field name='name'>emp.institute.tree.view</field>
+        <field name='model'>emp.institute</field>
+        <field name='arch' type='xml'>
+            <tree>
+                <field name='name'/>
+                <field name='code'/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action for employee institute -->
+    <record id="emp_institute_action" model="ir.actions.act_window">
+        <field name='name'>Institutes</field>
+        <field name='res_model'>emp.institute</field>
+
+        <field name='view_mode'>tree,form</field>
+    </record>
+
+    <!-- menu for employee institute -->
+    <menuitem id='emp_institute_menu' action='emp_institute_action'
+        parent='menu_law_config' groups="group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Form view for employee university -->
+    <record id="emp_university_form_view" model="ir.ui.view">
+        <field name="name">emp.university.form.view</field>
+        <field name="model">emp.university</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name='name' required="1"/>
+                        <field name='code'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for employee university -->
+    <record id="emp_university_tree_view" model="ir.ui.view">
+        <field name='name'>emp.university.tree.view</field>
+        <field name='model'>emp.university</field>
+        <field name='arch' type='xml'>
+            <tree>
+                <field name='name'/>
+                <field name='code'/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action for employee university -->
+    <record id="emp_university_action" model="ir.actions.act_window">
+        <field name='name'>Universities</field>
+        <field name='res_model'>emp.university</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+
+    <!-- menu for employee university -->
+    <menuitem id='emp_university_menu' action='emp_university_action'
+        parent='menu_law_config' groups="group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- tree view for employee certificate -->
+    <record model="ir.ui.view" id="emp_certificate_tree_id">
+        <field name="name">emp.certificate.tree</field>
+        <field name="model">emp.degree</field>
+        <field name="arch" type="xml">
+            <tree string="Degree">
+                <field name="name" />
+                <field name="code" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view for employee certificate -->
+    <record model="ir.ui.view" id="emp_certificate_form_id">
+        <field name="name">emp.certificate.form</field>
+        <field name="model">emp.degree</field>
+        <field name="arch" type="xml">
+            <form string="Degree">
+                <sheet>
+                    <group>
+                        <field name="name" required='1' />
+                        <field name="code" required='1' />
+                        <field name="type" required='1' invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- action for employee certificate -->
+    <record id="action_add_certificate" model="ir.actions.act_window">
+        <field name="name">Certificates</field>
+        <field name="res_model">emp.degree</field>
+        <field name='domain'>[('type','=','certificate')]</field>
+        <field name='context'>{'default_type':'certificate'}</field>
+    </record>
+
+    <!-- menu for employee certificate -->
+    <menuitem id="menu_emp_certificate" action="action_add_certificate"
+        parent="menu_law_config" groups="group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+</odoo>

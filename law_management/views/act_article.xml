@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- form view of act -->
+    <record id="act_act_view_form" model="ir.ui.view">
+        <field name="name">view.act.form</field>
+        <field name="model">act.act</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group cols="4">
+                        <group>
+                            <field name="act_no" />
+                            <field name="act_type" required="1"/>
+                            <field name="act_link" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="act_name" required="1"/>
+                            <field name="act_year" required="1" />
+                        </group>
+                    </group>
+                    <div>
+                        <separator string="Act Description"/>
+                        <field name="act_desc" required="1"
+                            nolabel="1" style="word-break:break-all;"/>
+                   </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view of act-->
+    <record id="act_act_view_tree" model="ir.ui.view">
+        <field name="name">view.act.tree</field>
+        <field name="model">act.act</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="act_no"/>
+                <field name="act_name"/>
+                <field name="act_type"/>
+                <field name="act_year"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view of act-->
+    <record id="act_act_view_search" model="ir.ui.view">
+        <field name="name">view.act.search</field>
+        <field name="model">act.act</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="act_name"/>
+                <field name="act_type"/>
+                <field name="act_year"/>
+                <filter name="act_type" domain="[]"
+                    string="Type" context="{'group_by':'act_type'}"/>
+                <filter name="act_year" domain="[]"
+                    string="Year" context="{'group_by':'act_year'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action of act -->
+    <record id="act_act_action" model="ir.actions.act_window">
+        <field name="name">Act</field>
+        <field name="res_model">act.act</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Act menu -->
+    <menuitem id ="act_act_menu" name="Acts" action="act_act_action"
+        parent="menu_law_config" groups="group_law_erp_admin,group_law_erp_lawyer,law_management.group_law_erp_help_desk_officer"/>
+
+    <!--   Form view of Article -->
+    <record id ="article_article_view_form" model="ir.ui.view">
+        <field name="name">view.article.form</field>
+        <field name="model">article.article</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group >
+                        <group>
+                            <field name="article_no" required="1"/>
+                            <field name="art_link" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="art_name" required="1"/>
+                            <field name="art_category"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="art_notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   <!-- Tree view of Article-->
+    <record id="article_article_view_tree" model="ir.ui.view">
+        <field name="name">view.article.tree</field>
+        <field name="model">article.article</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="article_no"/>
+                <field name="art_name"/>
+                <field name="art_category"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view of article -->
+    <record id ="article_article_view_search" model="ir.ui.view">
+        <field name="name">view.article.search</field>
+        <field name="model">article.article</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="art_name"/>
+            </search>
+        </field>
+    </record>
+
+   <!--  Action of article -->
+    <record id="article_article_action" model="ir.actions.act_window">
+        <field name="name">Article</field>
+        <field name="res_model">article.article</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--  Article Menu -->
+    <menuitem id="article_article_menu" action ="article_article_action"
+        name="Articles" parent="menu_law_config" groups="group_law_erp_admin,group_law_erp_lawyer,law_management.group_law_erp_help_desk_officer"/>
+
+    <!-- Form view of Court -->
+    <record id ="court_court_view_form" model="ir.ui.view">
+        <field name="name">court.form.view</field>
+        <field name="model">court.court</field>
+        <field name="arch" type ="xml">
+            <form>
+                <sheet>
+                    <group colspan="4">
+                        <field name="name" required="1"/>
+                        <field name="location" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Court -->
+    <record id ="court_court_view_tree" model="ir.ui.view">
+        <field name="name">court.tree.view</field>
+        <field name="model">court.court</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="location"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view of Court -->
+        <record id="court_court_view_search" model="ir.ui.view">
+            <field name="name">court.search</field>
+            <field name="model">court.court</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="location"/>
+                    <filter name="fil_location" domain="[]" string="Location"
+                        context="{'group_by':'location'}"/>
+                    <field name="name"/>
+                    <filter name="fil_name" domain="[]" string="Name"
+                        context="{'group_by':'name'}"/>
+                </search>
+            </field>
+        </record>
+
+    <!-- Action of Court -->
+    <record id ="court_court_action" model="ir.actions.act_window">
+        <field name="name">Court</field>
+        <field name="res_model">court.court</field>
+<!--         <field name="view_type">form</field>
+ -->        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_fil_location':1}</field>
+    </record>
+
+    <!-- Menu of Court -->
+    <menuitem id="court_court_menu" action ="court_court_action" name="Courts"
+        parent="menu_law_config" groups="group_law_erp_admin,law_management.group_law_erp_help_desk_officer"/>
+</odoo>

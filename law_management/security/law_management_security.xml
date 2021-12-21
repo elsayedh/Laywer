@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Category LAWERP -->
+    <record id="category_lawerp_module" model="ir.module.category">
+        <field name="name">LawERP</field>
+        <field name="sequence">103</field>
+    </record>
+
+    <!-- Law Admin Group -->
+    <record id="group_law_erp_admin" model="res.groups">
+        <field name="category_id" ref="law_management.category_lawerp_module"/>
+        <field name="name">Law Admin</field>
+        <field name="comment">Law Admin</field>
+    </record>
+
+    <!-- Law Help Desk Officer Group -->
+    <record id="group_law_erp_help_desk_officer" model="res.groups">
+        <field name="category_id" ref="law_management.category_lawerp_module"/>
+        <field name="name">Help Desk Officer</field>
+        <field name="comment">Help Desk Officer</field>
+    </record>
+
+    <!-- Lawyer Group -->
+    <record id="group_law_erp_lawyer" model="res.groups">
+        <field name="category_id" ref="law_management.category_lawerp_module"/>
+        <field name="name">Lawyer</field>
+        <field name="comment">Lawyer</field>
+    </record>
+
+    <!-- Client Group -->
+    <record id="group_law_erp_client" model="res.groups">
+        <field name="category_id" ref="law_management.category_lawerp_module"/>
+        <field name="name">Client</field>
+        <field name="comment">Client</field>
+    </record>
+
+    <!-- Record Rule::- Client can see only his/her own record-->
+    <record id="client_rule" model="ir.rule">
+        <field name="name">client can see only his/her record</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force"> [('id','=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_client')),(4, ref('base.group_user'))]"/>
+        <field name='perm_create' eval='False'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='False'/>
+        <field name='perm_write' eval='False'/>
+    </record>
+
+    <!-- Record Rule::- Admin can see all record-->
+    <record id="admin_rule" model="ir.rule">
+        <field name="name">Law Admin can see all record</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force"> [(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_admin')), (4, ref('hr.group_hr_manager'))]"/>
+        <field name='perm_create' eval='True'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='True'/>
+        <field name='perm_write' eval='True'/>
+    </record>
+
+    <!-- Record Rule::- Client can see only his/her own matter-->
+    <record id="matter_rule" model="ir.rule">
+        <field name="name">client can see only his/her matter</field>
+        <field name="model_id" ref="law_management.model_matter_matter"/>
+        <field name="domain_force"> [('mat_client.id','=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_client')), (4, ref('law_management.group_law_erp_lawyer'))]"/>
+        <field name='perm_create' eval='False'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='False'/>
+        <field name='perm_write' eval='True'/>
+    </record>
+
+    <!-- Record Rule::- Lawyer can see only his/her own Clients-->
+    <record id="res_partner_rule_lawyer" model="ir.rule">
+        <field name="name">lawyer can see only his/her clients</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force"> [('id','in', user.client_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_lawyer'))]"/>
+        <field name='perm_create' eval='False'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='False'/>
+        <field name='perm_write' eval='False'/>
+    </record>
+
+     <!-- Record Rule::- Lawyer can see only his/her own Matter-->
+    <record id="matter_matter_rule_lawyer" model="ir.rule">
+        <field name="name">lawyer can see only his/her Matters</field>
+        <field name="model_id" ref="model_matter_matter"/>
+        <field name="domain_force"> [('assign_id.user_id.id','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_lawyer'))]"/>
+        <field name='perm_create' eval='True'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='False'/>
+        <field name='perm_write' eval='True'/>
+    </record>
+
+    <!-- Rule for Lawyer viewing his record only-->
+    <record id="rule_lawyer_lawyer" model="ir.rule">
+        <field name="name">Rule for Lawyer viewing his Record</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_lawyer'))]"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+    </record>
+
+    <record id="matter_matter_rule_admin" model="ir.rule">
+        <field name="name">Law Admin can see all record</field>
+        <field name="model_id" ref="model_matter_matter"/>
+        <field name="domain_force"> [(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_admin')), (4, ref('hr.group_hr_manager'))]"/>
+        <field name='perm_create' eval='True'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='True'/>
+        <field name='perm_write' eval='True'/>
+    </record>
+
+    <!-- Record Rule::- Client can see only his/her own record
+    <record id="lawyer_rule" model="ir.rule">
+        <field name="name">client can see only lawyer assigned to his/her matter</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force"> [('mat_client.id','=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('law_management.group_law_erp_client'))]"/>
+        <field name='perm_create' eval='False'/>
+        <field name='perm_read' eval='True'/>
+        <field name='perm_unlink' eval='False'/>
+        <field name='perm_write' eval='False'/>
+    </record>-->
+</odoo>
